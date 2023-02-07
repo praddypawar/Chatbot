@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{chatbot_data.chatbot_name}}</title>
+    <link rel="stylesheet" href="{% static 'template/bot/css/style.css' %}">
+    {% comment %} <script src="{% static 'template/bot/js/chat.js' %}"></script> {% endcomment %}
+    <script src="{% static 'template/bot/js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'template/bot/js/script.js' %}"></script>
+    
+    
+    
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- chat box -->
+        <div class="chat-box">
+            <!-- client -->
+            <div class="client">
+                <img src="../../media/{{chatbot_data.logo}}" alt="logo" />
+                <div class="client-info">
+                    <h2>{{chatbot_data.chatbot_name}}</h2>
+                    <p>online</p>
+                </div>
+            </div>
+
+            <!-- main chat section -->
+            
+            <div class="chats" style="overflow-y:auto;max-height:300px;" id="sub">
+                <!-- <button type="submit" id="dynamicbtn" value="To Build a bot ?" class="btn form-input">To Build a bot ?</button> -->
+                <div class="tenor-gif-embed" data-postid="14527693" data-share-method="host" data-aspect-ratio="1" data-width="50%"> </div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+                {% comment %} <div class="my-chat" id='message'>{{msg}}</div>
+                <div class="client-chat">{{res}}</div> {% endcomment %}
+            </div>
+
+            <!-- input field section -->
+           <form method="post"> {% csrf_token %}
+                <div class="chat-input">
+                    <input type="text" class="inp" id="msg" placeholder="Enter Message"  autocomplete="off"/>
+                    <button type="button" class="send-btn" id="check">
+                        <img src="{% static 'template/bot/image/send.jpg' %}" alt="send-btn">
+                    </button>
+                </div>
+           </form>
+        </div>
+
+        <!-- button -->
+        <div class="chat-btn">
+            <img src="{% static 'template/bot/image/Circle-icon-chat.jpg' %}" alt="chat box icon btn">
+        </div>
+    </div>
+
+    <script>
+        var $cont = $('.chats');
+        $cont[0].scrollTop = $cont[0].scrollHeight;
+
+        $('.inp').keyup(function(e) {
+            if (e.keyCode == 13) {
+                //$cont.append('<p>' + $(this).val() + '</p>');
+                $cont[0].scrollTop = $cont[0].scrollHeight;
+                $(this).val('');
+            }
+        })
+        .focus();
+    </script>
+    <script>
+
+        const element = document.getElementById("sub");
+        element.scrollTop = element.scrollHeight;
+        var input = document.getElementById("msg");
+        input.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("check").click();
+        }
+        });
+
+    </script>
+    
+   
+
+    <script>
+        $('#check').click(function() {
+            // alert("main btn");
+			var msg = $('#msg').val();
+            // alert(msg);
+            $('#msg').val(null);
+            $.ajax({
+                method: "POST",
+                data: {
+                  msg: msg,
+                },
+                success:function(data){
+					$('#sub').append(data);
+				},
+                headers: {
+                  "X-CSRFToken": "{{csrf_token}}"
+                }
+                
+              })
+		});
+    </script>
+    <script>
+       
+        function GFG_click(clicked) {
+            // alert(clicked);
+            $.ajax({
+            method: "POST",
+            data: {
+                msg: clicked,
+            },
+            success:function(data){
+                $('#sub').append(data);
+            },
+            headers: {
+                "X-CSRFToken": "{{csrf_token}}"
+            }  
+            })
+    
+        }         
+    </script>
+
+    <!-- <script>
+    $(document).ready(function(){
+      $(document).on('click','.dynamicbtn1',function() {
+        alert("second btn");
+        var msg = $('.dynamicbtn1').val();
+        alert(msg);
+                // $('#dynamicbtn').val(null);
+                $.ajax({
+                    method: "POST",
+                    data: {
+                      msg: msg,
+                    },
+                    success:function(data){
+                        $('#sub').append(data);
+                    },
+                    headers: {
+                      "X-CSRFToken": "{{csrf_token}}"
+                    }  
+                  })
+      });
+    });
+    </script> -->
+     
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+{
+    "intents": [
+        {
+            "tag": "1",
+            "patterns": [
+                "hii",
+                "hello"
+            ],
+            "responses": [
+                "<div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><p class=\"bot-chat botside-message\" id=\"bot-msg\">hello</p></div></div>"
+            ]
+        },
+        {
+            "tag": "2",
+            "patterns": [
+                "hey"
+            ],
+            "responses": [
+                "<div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><p class=\"bot-chat botside-message\" id=\"bot-msg\">dfgd</p></div></div>"
+            ]
+        },
+        {
+            "tag": "3",
+            "patterns": [
+                "helloooo"
+            ],
+            "responses": [
+                "<div class=\"row justify-content-start form-input-wrap\"><div class=\"col\"><button type=\"button\"  id=\"dynamicbtn\" onClick=\"GFG_click(this.value)\" value=\"ss\" class=\"btn form-input\">ss</button></div></div><div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><label class=\"form-check-label\" for=\"flexCheckDefault\"><a target=\"_blank\" href=\"http://192.168.0.200:8090/client-app/advance-bot-builder/\" class=\"chat-link\">http://192.168.0.200:8090/client-app/advance-bot-builder/</a></label> </div></div>"
+            ]
+        },
+        {
+            "tag": "4",
+            "patterns": [
+                "http://192.168.0.200:8090/client-app/advance-bot-builder/"
+            ],
+            "responses": [
+                "<div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><p class=\"bot-chat botside-message\" id=\"bot-msg\">this is the link for school chatbot</p></div></div>"
+            ]
+        },
+        {
+            "tag": "5",
+            "patterns": [
+                "ss"
+            ],
+            "responses": [
+                "<div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><p class=\"bot-chat botside-message\" id=\"bot-msg\">jjjs</p></div></div>"
+            ]
+        }
+    ]
+}

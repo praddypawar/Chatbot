@@ -1,0 +1,207 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="">
+<!--<![endif]-->
+
+<head>
+    {% include 'client_temp/basic/head.html' %}
+
+</head>
+
+<body>
+    {% include 'client_temp/basic/sidebar.html' %}
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+        <!-- Header-->
+        {% include 'client_temp/basic/header.html' %}
+        <!-- /#header -->
+        <!-- Content -->
+        <div class="content">
+            <!-- Animated -->
+            {% for message in messages %}
+            {% if message %}
+            <br>
+            <div class="sufee-alert alert with-close alert-primary alert-dismissible fade show">
+                {% if message.tags == "error" %}
+                <span class="badge badge-pill badge-danger">{{message.tags }}</span>
+                {% else %}
+                <span class="badge badge-pill badge-{{message.tags}}">{{message.tags }}</span>
+                {% endif %}
+
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <div class="animated fadeIn">
+                <!-- Widgets  -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <form method="post" enctype="multipart/form-data" class=""> {% csrf_token %}
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="box-title">Basic Info </h4>
+                                </div>
+                                <hr>
+                                <div class="card-body--">
+                                    
+                                    
+                                    <div class="card-body card-block">
+                                        <div class="row form-group">
+                                            <div class="col col-md-12">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Bot Name</div>
+                                                    <input type="text" name="botname" placeholder="text" required
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-12">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Bot Logo</div>
+                                                    <input type="file" name="botlogo" class="form-control" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-12">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Bot Type</div>
+                                                    <input type="text" name="bottype" placeholder="text"
+                                                        class="form-control" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="box-title">Create Builder </h4>
+                                </div>
+                                <hr>
+                                <div class="card-body--">
+
+
+                                    <div class="card-body card-block">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">Category</div>
+                                                <select name="tag" id="tagid" class="form-control"
+                                                    onfocus='this.size=5;' onblur='this.size=1;'
+                                                    onchange='this.size=1; this.blur();'>
+                                                    <option selected disabled class="form-control">Select</option>
+                                                    <option value="Start">Start</option>
+                                                    <option value="Greeting">Greeting</option>
+                                                    <option value="Goodbye">Goodbye</option>
+                                                    <option value="Complaints">Complaints</option>
+                                                    <option value="Contact">Contact</option>
+                                                    <option value="Thanks">Thanks</option>
+                                                    <option value="Bot">Bot</option>
+                                                    <option value="Intro">Intro</option>
+                                                    <option value="End">End</option>
+                                                    <option style="color:rgb(1, 1, 31)" value="Other"><b>Other</b>
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div id="othertxt" class="row form-group" style="display:none;">
+                                            <div class="col col-md-12">
+                                                <div class="input-group">
+                                                    <input type="text" id="othertagid" name="othertag"
+                                                        placeholder="Category..." class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-12">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Questions Patterns</div>
+                                                    <input type="text" id="patternsid" name="patterns[]"
+                                                        placeholder="text" class="form-control">
+                                                    <a href="javascript:void(0);" class="add_button_work"
+                                                        title="Add field">
+                                                        <div class="input-group-btn"><button type="button"
+                                                                class="btn btn-primary">Add More</button></div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="field_wrapper_work">
+
+                                        </div>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon">Responses</div>
+                                            <select name="btnres" id="responses" class="form-control"
+                                                onfocus='this.size=4;' onblur='this.size=1;'
+                                                onchange='this.size=1; this.blur();'>
+                                                <option selected disabled class="form-control">Select</option>
+                                                <option value="btn">Button</option>
+                                                <option value="lbl">Lable</option>
+                                                <option value="lnk">Link/Url</option>
+                                                <option value="txa">Text Area</option>
+                                                <option value="no">Number</option>
+                                                <option value="chk">Checkbox</option>
+                                            </select>
+                                        </div>
+                                        <br>
+                                        <div class="field_wrapper_work1">
+
+                                        </div>
+                                        <br>
+                                        <div class="row col-md-3">
+                                            <div class="form-actions form-group col-md-3">
+                                                <button id="addjson" type="button"
+                                                    class="btn btn-success btn-sm">Add</button>
+                                            </div>
+    
+                                            <div class="form-actions form-group col-md-3">
+                                                <button id="clearjson" type="button"
+                                                    class="btn btn-danger btn-sm">Clear All</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="card">
+                                <div class="card-body--">
+                                    <div class="card-body card-block">
+                                        <div id="json_datas">
+
+                                        </div>
+                                        <br><br>
+                                        <div class="form-actions form-group">
+                                            <button id="" name="all_data_submit" type="submit"
+                                                class="btn btn-info btn-sm">Submit All Data</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <!-- /Widgets -->
+
+                <div class="clearfix"></div>
+            </div>
+            <!-- .animated -->
+        </div>
+        <!-- /.content -->
+        {% include 'client_temp/basic/footer.html' %}
+        <!-- /.site-footer -->
+    </div>
+    <!-- /#right-panel -->
+
+    {% include 'client_temp/basic/scripts.html' %}
+</body>
+
+</html>

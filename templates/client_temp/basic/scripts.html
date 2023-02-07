@@ -1,0 +1,323 @@
+{% load static %}
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+<script src="{% static 'template/assets/js/main.js' %}"></script>
+
+<!--  Chart js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
+
+<!--Chartist Chart-->
+<script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
+<script src="{% static 'template/assets/js/init/weather-init.js' %}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
+<script src="{% static 'template/assets/js/init/fullcalendar-init.js' %}"></script>
+
+
+<script src="{% static 'template/assets/js/lib/data-table/datatables.min.js' %}"></script>
+<script src="{% static 'template/assets/js/lib/data-table/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'template/assets/js/lib/data-table/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'template/assets/js/lib/data-table/buttons.bootstrap.min.js' %}"></script>
+<script src="{% static 'template/assets/js/lib/data-table/jszip.min.js' %}"></script>
+<script src="{% static 'template/assets/js/lib/data-table/vfs_fonts.js' %}"></script>
+<script src="{% static 'template/assets/js/lib/data-table/buttons.html5.min.js' %}"></script>
+<script src="{% static 'template/assets/js/lib/data-table/buttons.print.min.js' %}"></script>
+<script src="{% static 'template/assets/js/lib/data-table/buttons.colVis.min.js' %}"></script>
+<script src="{% static 'template/assets/js/init/datatables-init.js' %}"></script>
+
+
+<!--Local Stuff-->
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('#bootstrap-data-table-export').DataTable();
+  } );
+</script>
+
+<script>
+  $(document).ready(function(){
+      // var maxField = 10; //Input fields increment limitation
+      var addButton = $('.add_button_work'); //Add button selector
+      var wrapper = $('.field_wrapper_work'); //Input field wrapper
+      var fieldHTML = '<div id="delwork" class="row form-group"><div class="col col-md-12"><div class="input-group"><div class="input-group-addon">Patterns</div><input type="text" id="i2" name="patterns[]" placeholder="text" class="form-control"><a href="javascript:void(0);" class="remove_button_work"><div class="input-group-btn"><button type="button" class="btn btn-danger">Remove</button></div></a></div></div> </div>'; 
+      var x = 1; //Initial field counter is 1
+      
+      //Once add button is clicked
+      $(addButton).click(function(){
+          // alert("hello");
+          //Check maximum number of input fields
+          // if(x < maxField){ 
+              x++; //Increment field counter
+              $(wrapper).append(fieldHTML); //Add field html
+          // }
+      });
+      //Once remove button is clicked
+      $(wrapper).on('click', '.remove_button_work', function(e){
+          // e.preventDefault();
+          // $(this).div('div').remove(); //Remove field html
+          var element = document.getElementById("delwork");
+          element.parentNode.removeChild(element);
+          x--; //Decrement field counter
+      });
+  });
+
+</script>
+
+<script>
+  $(document).ready(function(){
+      // var maxField = 10; //Input fields increment limitation
+      var addButton = $('#responses'); //Add button selector
+      var wrapper = $('.field_wrapper_work1'); //Input field wrapper
+      var fieldHTML = ''
+      var x = 1; //Initial field counter is 1
+      
+      //Once add button is clicked
+      $(addButton).change(function(){
+          // alert("hello");
+          var ms = document.getElementById('responses').value;
+          console.log(ms);
+          $('#responses').val($('#responses option').eq(0).val());
+          if (ms == "btn"){
+            
+            fieldHTML = `<div  id="delwork1" class="card">
+                        <div class="card-header">
+                              <strong>Button </strong> Form
+                          </div>
+                          <div class="card-body card-block">
+                                  <div class="form-group">
+                                    <input type="hidden" name="restype[]" value="btn">
+                                      <label for="Label1" class="pr-1  form-control-label">Button Text</label>
+                                      <input type="text" name="btnlabel[]" id="Label1" placeholder="Label" required="" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="exampleInputEmail2" class="px-1  form-control-label">Button Name</label>
+                                      <input type="text" name="btnname[]" id="exampleInputEmail2" placeholder="" required="" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="px-1  form-control-label">Theme</label>
+                                      <select name="btntheme[]" class="form-control">
+                                          <option value="primary">Primary</option>
+                                          <option value="danger">Danger</option>
+                                          <option value="info">Info</option>
+                                      </select>
+                                  </div>  
+                          </div>
+                          <div class="card-footer">
+                            <a href="javascript:void(0);" class="remove_button_work1">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-danger">Remove</button>
+                                </div>
+                            </a>
+                          </div>
+                    </div> `;
+          }
+          else if(ms=="lbl"){
+            fieldHTML = `
+                      <div  id="delwork1" class="card">
+                        <div class="card-header">
+                              <strong>Label </strong> Form
+                          </div>
+                          <div class="card-body card-block">
+                                  <div class="form-group">
+                                    <input type="hidden" name="restype[]" value="lbl">
+                                      <label for="Label1" class="pr-1  form-control-label">Label Text</label>
+                                      <input type="text" name="btnlabel[]" id="Label1" placeholder="Label" required="" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="exampleInputEmail2" class="px-1  form-control-label">Label Name</label>
+                                      <input type="text" name="btnname[]" id="exampleInputEmail2" placeholder="" required="" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="px-1  form-control-label">Theme</label>
+                                      <select name="btntheme[]" class="form-control">
+                                        <option value="normal">Normal</option>
+                                          <option value="primary">Primary</option>
+                                          <option value="danger">Danger</option>
+                                          <option value="info">Info</option>
+                                      </select>
+                                  </div>   
+                          </div>
+                          <div class="card-footer">
+                            <a href="javascript:void(0);" class="remove_button_work1">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-danger">Remove</button>
+                                </div>
+                            </a>
+                          </div>
+                    </div> `;
+          }
+          else if(ms=="lnk"){
+            fieldHTML = `<div  id="delwork1" class="card">
+                          <div class="card-header">
+                                <strong>Link Url </strong> Form
+                            </div>
+                            <div class="card-body card-block">
+                                    <div class="form-group">
+                                      <input type="hidden" name="restype[]" value="lnk">
+                                        <label for="Label1" class="pr-1  form-control-label">Link url</label>
+                                        <input type="text" name="btnlabel[]" id="Label1" placeholder="Label" required="" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail2" class="px-1  form-control-label">Link Name</label>
+                                        <input type="text" name="btnname[]" id="exampleInputEmail2" placeholder="" required="" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="px-1  form-control-label">Theme</label>
+                                        <select name="btntheme[]" class="form-control">
+                                          <option value="normal">Normal</option>
+                                            <option value="primary">Primary</option>
+                                            <option value="danger">Danger</option>
+                                            <option value="info">Info</option>
+                                        </select>
+                                    </div>  
+                            </div>
+                            <div class="card-footer">
+                              <a href="javascript:void(0);" class="remove_button_work1">
+                                  <div class="input-group-btn">
+                                      <button type="button" class="btn btn-danger">Remove</button>
+                                  </div>
+                              </a>
+                            </div>
+                      </div>`;
+          }
+          //Check maximum number of input fields
+          // if(x < maxField){ 
+              x++; //Increment field counter
+              $(wrapper).append(fieldHTML); //Add field html
+          // }
+          fieldHTML = ''
+      });
+      //Once remove button is clicked
+      $(wrapper).on('click', '.remove_button_work1', function(e){
+          // e.preventDefault();
+          // $(this).div('div').remove(); //Remove field html
+          var element = document.getElementById("delwork1");
+          element.parentNode.removeChild(element);
+          x--; //Decrement field counter
+      });
+  });
+
+</script>
+
+
+
+<script>
+  $(document).ready(function(){
+      var tagid = $('#tagid'); 
+      var othertxt = $('#othertxt'); 
+      $(tagid).change(function(){
+        if (tagid.val() == "Other"){
+          // alert(tagid.val());
+          othertxt.css("display","block");
+          // alert("called");
+        }
+        else{
+          othertxt.css("display","none");
+        }
+      });
+  });
+
+</script>
+
+  <script>
+    $('#addjson').click(function() {
+        // alert("main btn");
+        var tagid = $('#tagid').val();
+        var othertag_id = $('#othertagid');
+        othertag = othertag_id.val();
+
+        var patternsid = [];
+        $("input[name='patterns[]']").each(function() {
+          patternsid.push($(this).val());
+        });
+
+        var restype =[];
+        $("input[name='restype[]']").each(function() {
+          restype.push($(this).val());
+        });
+
+        var btnlabel = [];
+        $("input[name='btnlabel[]']").each(function() {
+          btnlabel.push($(this).val());
+        });
+
+        var btnname = [];
+        $("input[name='btnname[]']").each(function() {
+          btnname.push($(this).val());
+        });
+
+        var btntheme =[];
+        $("select[name='btntheme[]']").each(function() {
+          btntheme.push($(this).val());
+        });
+        console.log(tagid,"---");
+        console.log(patternsid,"---");
+        console.log(restype,"---");
+        console.log(btnlabel,"---");
+        console.log(btnname,"---");
+        console.log(btntheme,"---");
+        
+        $('#patternsid').val(null);
+        $(".field_wrapper_work").empty();
+        $(".field_wrapper_work1").empty();
+        $('#tagid').val($('#tagid option').eq(0).val());
+        $('#responses').val($('#responses option').eq(0).val());
+        var othertxt = $('#othertxt');
+        othertxt.css("display","none");
+
+        $.ajax({
+            method: "POST",
+            data: {
+              tag: tagid,
+              patterns:patternsid,
+              restype:restype,
+              btnlabel:btnlabel,
+              btnname:btnname,
+              btntheme:btntheme,
+              othertag:othertag,
+
+            },
+                  success:function(data){
+                    $('#json_datas').empty();
+            $('#json_datas').append(data);
+          },
+            headers: {
+              "X-CSRFToken": "{{csrf_token}}"
+            }
+            
+          })
+  });
+  </script>
+
+<script>
+  $('#clearjson').click(function() {
+      // alert("main btn");
+      $.ajax({
+          method: "POST",
+          data: {
+            clearjson: true,
+          },
+                success:function(data){
+                  $('#json_datas').empty();
+          $('#json_datas').append(data);
+        },
+          headers: {
+            "X-CSRFToken": "{{csrf_token}}"
+          }
+
+        })
+});
+</script>
+
+
+

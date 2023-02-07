@@ -1,0 +1,166 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang=""> <!--<![endif]-->
+<head>
+    {% include 'admin_temp/basic/head.html' %}
+    <style>
+        .btn-primary {
+  color: #fff;
+  background-color: #878787;
+ font-size: 14px;
+ font-weight: 600;
+ margin-top: 10px;
+ border: 1px solid #424040;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #424040;
+ font-size: 14px;
+ font-weight: 600;
+}
+.alert-info {
+  color: #fff;
+  background-color: #878787;
+  border-color: #424040;
+}
+    </style>
+    <link rel="stylesheet" href="https://cdn.form.io/formiojs/formio.full.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    {% include 'admin_temp/basic/sidebar.html' %}
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+        <!-- Header-->
+       {% include 'admin_temp/basic/header.html' %}
+        <!-- /#header -->
+        <!-- Content -->
+        <div class="content">
+            <!-- Animated -->
+            {% for message in messages %}
+                {% if message %}
+                <br>
+                <div class="sufee-alert alert with-close alert-primary alert-dismissible fade show">
+                    {% if message.tags == "error" %}
+                    <span class="badge badge-pill badge-danger">{{message.tags }}</span>
+                    {% else %}
+                    <span class="badge badge-pill badge-{{message.tags}}">{{message.tags }}</span>
+                    {% endif %}
+                    
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endif %}
+            {% endfor %}
+            <div class="animated fadeIn">
+                <!-- Widgets  -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <strong class="card-title">Buttons</strong>
+                                        </div>
+                                        <div class="card-body">
+                                           <!-- builder  -->
+                                          
+                                           <!-- <div id="build-wrap">hello</div> -->
+                                       
+              
+                                        <div id="formio-builder"></div>
+                                         
+            
+                                        </div>
+                                    </div> <!-- .card -->
+            
+                                </div><!--/.col-->
+            
+            
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Widgets -->
+                
+                <div class="clearfix"></div>
+            </div>
+            <!-- .animated -->
+        </div>
+        <!-- /.content -->
+        {% include 'admin_temp/basic/footer.html' %}
+        <!-- /.site-footer -->
+    </div>
+    <!-- /#right-panel -->
+
+   {% include 'admin_temp/basic/scripts.html' %}
+
+   <script src="{% static 'template/assets/js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'template/assets/js/formiojs/formio.full.min.js' %}"></script>
+
+
+<script>
+
+const options = {
+  builder: {
+    basic: {
+      // We can change the title of a category...
+      title: 'Basic'
+    },
+    advanced:false,
+    data: false,
+
+    layout: 
+      // ... or change its position...
+      false
+    ,
+    premium: false,
+
+    // ... and even create custom categories
+    custom:false
+      
+    
+  }
+};
+
+// Initialize the form.io form JSON object
+
+const form = {
+  components: [
+  ]
+};
+
+const formio = {
+  builder: null,
+  form: null
+};
+
+
+Formio.createForm(document.getElementById('formio-form'), form)
+  .then((instance) => {
+    formio.form = instance;
+});
+
+// Initialize the formio builder instance
+Formio.builder(document.getElementById('formio-builder'), form, options)
+  .then((instance) => {
+    formio.builder = instance;
+    // Define the on render event of the formio builder instance
+    formio.builder.on('render', () => {
+      // Update the formio form object and re render the form
+      formio.form.form = form;
+      formio.form.render();
+      
+      // Update the json code using Prism.js
+      document.querySelector('code').innerHTML = Prism.highlight(JSON.stringify(form, null, 2), Prism.languages.json, 'json');
+    });
+    document.querySelector('code').innerHTML = Prism.highlight(JSON.stringify(form, null, 2), Prism.languages.json, 'json');
+  });
+
+</script>
+</body>
+</html>

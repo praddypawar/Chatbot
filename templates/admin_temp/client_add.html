@@ -1,0 +1,137 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang=""> <!--<![endif]-->
+<head>
+    {% include 'admin_temp/basic/head.html' %}
+</head>
+
+<body>
+    {% include 'admin_temp/basic/sidebar.html' %}
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+        <!-- Header-->
+       {% include 'admin_temp/basic/header.html' %}
+        <!-- /#header -->
+        <!-- Content -->
+        <div class="content">
+            <!-- Animated -->
+            {% for message in messages %}
+                {% if message %}
+                <br>
+                <div class="sufee-alert alert with-close alert-primary alert-dismissible fade show">
+                    {% if message.tags == "error" %}
+                    <span class="badge badge-pill badge-danger">{{message.tags }}</span>
+                    {% else %}
+                    <span class="badge badge-pill badge-{{message.tags}}">{{message.tags }}</span>
+                    {% endif %}
+                    
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endif %}
+            {% endfor %}
+            <div class="animated fadeIn">
+                <!-- Widgets  -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            {% if client_data.pk > 0 %}
+                            <div class="card-header">Update data</div>
+                            {% else %}
+                            <div class="card-header">Add new data</div>
+                            {% endif %}
+                            
+                            <div class="card-body card-block">
+                                <form  method="post" class="" > {% csrf_token %} 
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">First Name</div>
+                                            <input type="text" id="fname" name="fname" value="{{client_data.fname}}" class="form-control">
+                                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">Last Name</div>
+                                            <input type="text" id="lname" name="lname" value="{{client_data.lname}}" class="form-control">
+                                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">Email</div>
+                                            <input type="email" id="email3" name="email" value="{{client_data.email}}" class="form-control">
+                                            <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">Mobile Number</div>
+                                            <input type="number" id="email3" name="mobile" value="{{client_data.mobile}}" class="form-control">
+                                            <div class="input-group-addon"><i class="fa fa-phone"></i></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">Designation</div>
+                                            <select name="designation">
+                                                
+                                                {% if client_data.pk > 0 %}
+                                                <option value="{{client_data.designation}}">{{client_data.designation}}</option>
+                                                {% else %}
+                                                <option>select</option>
+                                                {% endif %}
+
+                                                <option value="Student">Student</option>
+                                                <option value="Developer">Developer</option>
+                                                <option value="Businessman">Businessman</option>
+
+                                            </select>
+                                            <!-- <div class="input-group-addon"><i class="fa fa-envelope"></i></div> -->
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">Password</div>
+                                            <input type="password" id="password" value="{{client_data.password}}" name="password" class="form-control">
+                                            <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
+                                        </div>
+                                    </div>
+                                    {% if client_data.pk > 0 %}
+                                   <div class="row">
+                                    <div class="form-actions form-group col-md-1">
+                                        <button type="submit" class="btn btn-primary btn-sm">Update Data</button>
+                                    </div>
+                                    <a href="{% url 'appadmins:clientview' %}"><div class="form-actions form-group col-md-1">
+                                        <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                    </div></a>
+                                   </div>
+                                    {% else %}
+                                    <div class="form-actions form-group">
+                                        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                                    </div>
+                                    
+                                    {% endif %}
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Widgets -->
+                
+                <div class="clearfix"></div>
+            </div>
+            <!-- .animated -->
+        </div>
+        <!-- /.content -->
+        {% include 'admin_temp/basic/footer.html' %}
+        <!-- /.site-footer -->
+    </div>
+    <!-- /#right-panel -->
+
+   {% include 'admin_temp/basic/scripts.html' %}
+</body>
+</html>

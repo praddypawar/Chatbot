@@ -1,0 +1,313 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <title>{{title}}-{{chatbot_data.chatbot_name}}</title>
+    <link rel="stylesheet" href="{% static 'template/bot/bot_css/chat.css' %}" />
+    <link rel="stylesheet" href="{% static 'template/bot/bot_css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'template/bot/bot_css/all.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'template/bot/bot_css/typing.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'template/bot/demo_css/demo.css' %}">
+    <script src="{% static 'template/bot/js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'template/bot/js/script.js' %}"></script>
+  
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo_content ">
+            <div class="logo">
+                <div class="logo_name">
+                    <img class="img-size" src="{% static 'template/bot/Images/Chat bot logo.png' %}" alt="">
+                </div>
+            </div>
+            <i class="bi bi-list" id="btn" ></i>
+        </div>
+        <ui class="nav_list">
+            <li>
+                <a href="#">
+                    <i class="bi bi-grid"></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bi bi-person"></i>
+                    <span class="links_name">User</span>
+                </a>
+                <span class="tooltip">User</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bi bi-chat-left"></i>
+                    <span class="links_name">Message</span>
+                </a>
+                <span class="tooltip">Message</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bi bi-pie-chart"></i>
+                    <span class="links_name">Analytics</span>
+                </a>
+                <span class="tooltip">Analytics</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bi bi-folder"></i>
+                    <span class="links_name">File Manager</span>
+                </a>
+                <span class="tooltip">File Manager</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bi bi-cart"></i>
+                    <span class="links_name">Order</span>
+                </a>
+                <span class="tooltip">Order</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bi bi-save"></i>
+                    <span class="links_name">Saved</span>
+                </a>
+                <span class="tooltip">Saved</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bi bi-gear"></i>
+                    <span class="links_name">Setting</span>
+                </a>
+                <span class="tooltip">Setting</span>
+            </li>
+        </ui>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <img src="{% static 'template/bot/Images/Ellipse 1.png' %}" alt=" profile photo">
+                    <div class="name_job">
+                        <div class="name">Dhruti Rathod</div>
+                        <div class="job">Front End Dev.</div>
+                    </div>
+                </div>
+                <i class="bi bi-box-arrow-left" id="log_out"></i>
+            </div>
+        </div>
+    </div>
+    
+    </div>
+    <!-- popup section  -->
+<div class="chatbox">
+    <div class="chatbox__support">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-title-wrap">
+            <img
+              class="chatbot-logo"
+              src="{% static 'template/bot/bot_images/Chat bot logo.png' %}"
+              alt=""
+              srcset=""
+            />
+            {{chatbot_data.chatbot_name}}
+          </div>
+        </div>
+      </div>
+
+      <div  class="chatbox__messages">
+        <div>
+          <div class="row justify-content-start form-input-wrap">
+            <div class="col-lg-12 col-sm-10">
+              <img
+                class="chatbot-logo"
+                src="{% static 'template/bot/bot_images/result-unscreen.gif' %}"
+                alt=""
+                srcset=""
+                style="width: 250px;"
+              />
+            </div>
+          </div>
+          
+          
+          <div  id="sub">
+            
+          </div>
+          
+          <div class="chatbox__footer">
+            <div class="enter-text-wrap">
+              <div class="row">
+                <form method="post"> {% csrf_token %}
+                <div class="col-md-12">
+                  
+                  <!-- <i class="fa-solid fa-microphone"></i>
+                  <i class="fa-solid fa-paperclip"></i>
+                  <i  id="check" class="fa-solid fa-arrow-right send-btn"></i> -->
+                  <div class="chat-btn-wrap">
+                    <button type="button" class="chat-btn">
+                      <i class="fa-solid fa-microphone"></i>
+                    </button>
+                    <button type="button" class="chat-btn">
+                      <i class="fa-solid fa-paperclip"></i>
+                    </button>
+                   <button type="button" id="check" class="chat-btn">
+                    <i class="fa-solid fa-arrow-right"></i>
+                   </button>
+                  </div>
+
+                  <input
+                    type="text"
+                    id="msg"
+                    class="enter-text inp"
+                    placeholder="Enter your text here !"
+                    autocomplete="off"
+                  />
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chatbox__button">
+      <button class="click-btn">
+        <img src="{% static 'template/bot/bot_images/chat-icon.png' %}" >
+      </button>
+    </div>
+  </div>
+
+  <script>
+    var $cont = $('.chats');
+    $cont[0].scrollTop = $cont[0].scrollHeight;
+
+    $('.inp').keyup(function(e) {
+        if (e.keyCode == 13) {
+            //$cont.append('<p>' + $(this).val() + '</p>');
+            $cont[0].scrollTop = $cont[0].scrollHeight;
+            $(this).val('');
+        }
+    })
+    .focus();
+</script>
+<script>
+
+    const element = document.getElementById("sub");
+    element.scrollTop = element.scrollHeight;
+    var input = document.getElementById("msg");
+    input.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("check").click();
+    }
+    });
+
+</script>
+
+
+
+<script>
+    $('#check').click(function() {
+        // alert("main btn");
+  var msg = $('#msg').val();
+        // alert(msg);
+        $('#msg').val(null);
+        $.ajax({
+            method: "POST",
+            data: {
+              msg: msg,
+            },
+            success:function(data){
+      $('#sub').append(data);
+    },
+            headers: {
+              "X-CSRFToken": "{{csrf_token}}"
+            }
+            
+          })
+});
+</script>
+<script>
+   
+    function GFG_click(clicked) {
+        // alert(clicked);
+        $.ajax({
+        method: "POST",
+        data: {
+            msg: clicked,
+        },
+        success:function(data){
+            $('#sub').append(data);
+        },
+        headers: {
+            "X-CSRFToken": "{{csrf_token}}"
+        }  
+        })
+
+    }         
+</script>
+
+
+  <script>
+      let btn = document.querySelector("#btn");
+      let sidebar = document.querySelector(".sidebar");
+      let logOut = document.querySelector("#log_out")
+
+      btn.onclick = function(){
+          sidebar.classList.toggle("active");
+      }
+      logOut.onclick = function(){
+          sidebar.classList.toggle("active");
+      }
+  </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" ></script>
+    <script src="{% static 'template/bot/bot_js/Chat.js' %}"></script>
+    <script src="{% static 'template/bot/bot_js/app.js' %}"></script>
+
+
+
+
+    <script src="{% static 'template/bot/bot_js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'template/bot/bot_js/index.js' %}"></script>
+
+
+
+
+
+    
+
+    <!-- <script>
+    $(document).ready(function(){
+      $(document).on('click','.dynamicbtn1',function() {
+        alert("second btn");
+        var msg = $('.dynamicbtn1').val();
+        alert(msg);
+                // $('#dynamicbtn').val(null);
+                $.ajax({
+                    method: "POST",
+                    data: {
+                      msg: msg,
+                    },
+                    success:function(data){
+                        $('#sub').append(data);
+                    },
+                    headers: {
+                      "X-CSRFToken": "{{csrf_token}}"
+                    }  
+                  })
+      });
+    });
+    </script> -->
+     
+</body>
+
+</html>

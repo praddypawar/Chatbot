@@ -1,0 +1,27 @@
+{
+    "intents": [
+        {
+            "tag": "confuse",
+            "patterns": [
+                " 1234567890dfgbhnjm",
+                "AZxscvbnm,?",
+                " ................",
+                "                     ",
+                " qwertyuio",
+                "wedfgonscjknkm",
+                "qazrfduhkipoktg",
+                "qazedcyhnol,cvbnggcfdy",
+                "11hb2bj43bjb54jbnj6bnj778bnj9kbhb8hb7hv",
+                "qwertyuiosdfgh cfghbc gnc c vgn c g ncfgnfgnfhg bhnbwed aefr gv fgdvh bnhng hb fn fd",
+                " 12233333444444444444444444444555555555555566666666s"
+            ],
+            "responses": [
+                "Can you tell me more about it ?",
+                "Unable to Understand input",
+                "Try using few keywords ",
+                "Can't find results",
+                "Check spellings and inputs"
+            ]
+        }
+    ]
+}

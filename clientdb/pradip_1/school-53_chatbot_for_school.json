@@ -1,0 +1,127 @@
+{
+    "intents": [
+        {
+            "tag": "confuse",
+            "patterns": [
+                " 1234567890dfgbhnjm",
+                "AZxscvbnm,?",
+                " ................",
+                "                     ",
+                " qwertyuio",
+                "wedfgonscjknkm",
+                "qazrfduhkipoktg",
+                "qazedcyhnol,cvbnggcfdy",
+                "11hb2bj43bjb54jbnj6bnj778bnj9kbhb8hb7hv",
+                "qwertyuiosdfgh cfghbc gnc c vgn c g ncfgnfgnfhg bhnbwed aefr gv fgdvh bnhng hb fn fd",
+                " 12233333444444444444444444444555555555555566666666s"
+            ],
+            "responses": [
+                "Can you tell me more about it ?",
+                "Unable to Understand input",
+                "Try using few keywords ",
+                "Can't find results",
+                "Check spellings and inputs"
+            ]
+        },
+        {
+            "tag": "start",
+            "patterns": [
+                "hello",
+                "hello there",
+                "hi",
+                "hey"
+            ],
+            "responses": [
+                "<div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><p class=\"bot-chat botside-message\" id=\"bot-msg\">Hello I'm Tarzan!! Your virtual assistant for today</p></div></div><div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><p class=\"bot-chat botside-message\" id=\"bot-msg\">How can  I help you??</p></div></div><div class=\"row justify-content-start form-input-wrap\"><div class=\"col\"><button type=\"button\"  id=\"dynamicbtn\" onClick=\"GFG_click(this.value)\" value=\"About School\" class=\"btn form-input\">About School</button></div></div><div class=\"row justify-content-start form-input-wrap\"><div class=\"col\"><button type=\"button\"  id=\"dynamicbtn\" onClick=\"GFG_click(this.value)\" value=\"About faculty\" class=\"btn form-input\">About faculty</button></div></div>"
+            ]
+        },
+        {
+            "tag": "about school",
+            "patterns": [
+                "About School"
+            ],
+            "responses": [
+                "<div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><label class=\"form-check-label\" for=\"flexCheckDefault\"><a target=\"_blank\" href=\"https://www.ryangroup.org/site/risdumasicse/achievements.php\" class=\"chat-link\">click here for school details</a></label> </div></div>"
+            ]
+        },
+        {
+            "tag": "about faculty",
+            "patterns": [
+                "About faculty"
+            ],
+            "responses": [
+                "<div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><label class=\"form-check-label\" for=\"flexCheckDefault\"><a target=\"_blank\" href=\"https://www.ryangroup.org/site/risdumasicse/achievements.php\" class=\"chat-link\">click here for faculty</a></label> </div></div>"
+            ]
+        },
+        {
+            "tag": "contact",
+            "patterns": [
+                "contact number",
+                "I want contact number",
+                "contact info",
+                "give me plz contact no."
+            ],
+            "responses": [
+                "<div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><p class=\"bot-chat botside-message\" id=\"bot-msg\">8256214512</p></div></div>"
+            ]
+        },
+        {
+            "tag": "complaints",
+            "patterns": [
+                "contact number not working",
+                "wrong contact details",
+                "wrong contact number"
+            ],
+            "responses": [
+                "<div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><p class=\"bot-chat botside-message\" id=\"bot-msg\">2356892356</p></div></div>"
+            ]
+        },
+       
+        {
+            "tag": "driver_contact number",
+            "patterns": [
+                "I want contact number of driver..",
+                "I want contact details of transportation services.."
+            ],
+            "responses": [
+                "<div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><p class=\"bot-chat botside-message\" id=\"bot-msg\">1245782356</p></div></div>"
+            ]
+        },
+        {
+            "tag": "bot",
+            "patterns": [
+                "How many types of transportation services available??"
+            ],
+            "responses": [
+                "<div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><p class=\"bot-chat botside-message\" id=\"bot-msg\">There are three types of services available</p></div></div><div class=\"row justify-content-start form-input-wrap\"><div class=\"col\"><button type=\"button\"  id=\"dynamicbtn\" onClick=\"GFG_click(this.value)\" value=\"By Bus\" class=\"btn form-input\">By Bus</button></div></div><div class=\"row justify-content-start form-input-wrap\"><div class=\"col\"><button type=\"button\"  id=\"dynamicbtn\" onClick=\"GFG_click(this.value)\" value=\"By van\" class=\"btn form-input\">By van</button></div></div><div class=\"row justify-content-start form-input-wrap\"><div class=\"col\"><button type=\"button\"  id=\"dynamicbtn\" onClick=\"GFG_click(this.value)\" value=\"By Auto\" class=\"btn form-input\">By Auto</button></div></div>"
+            ]
+        },
+        {
+            "tag": "by bus",
+            "patterns": [
+                "By Bus"
+            ],
+            "responses": [
+                "<div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><label class=\"form-check-label\" for=\"flexCheckDefault\"><a target=\"_blank\" href=\"https://www.google.com/search?q=bus&tbm=isch&chips=q:bus,g_1:school:hGkWpnK3ynQ%3D&rlz=1C1PNBB_enIN1007IN1007&hl=en&sa=X&ved=2ahUKEwiQpN3t6Jj6AhUrjNgFHab8BeUQ4lYoAXoECAEQJQ&biw=1903&bih=961#imgrc=vfjSnqPhK57mGM\" class=\"chat-link\">By Bus</a></label> </div></div>"
+            ]
+        },
+        {
+            "tag": "by van",
+            "patterns": [
+                "By Van"
+            ],
+            "responses": [
+                "<div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><label class=\"form-check-label\" for=\"flexCheckDefault\"><a target=\"_blank\" href=\"https://www.google.com/search?q=school+van&tbm=isch&ved=2ahUKEwiD_9Lz6Jj6AhV8i9gFHaI7AQQQ2-cCegQIABAA&oq=school+van&gs_lcp=CgNpbWcQAzILCAAQgAQQsQMQgwEyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQ6BAgjECc6CggAELEDEIMBEEM6BAgAEEM6CAgAELEDEIMBOggIABCABBCxAzoECAAQAzoHCAAQsQMQQzoHCCMQ6gIQJ1CZClj8RGC2SGgDcAB4AIABeogBiQySAQQwLjE0mAEAoAEBqgELZ3dzLXdpei1pbWewAQLAAQE&sclient=img&ei=xikkY4OELfyW4t4PoveEIA&bih=961&biw=1903&rlz=1C1PNBB_enIN1007IN1007&hl=en#imgrc=ZFVJ5bnIxD9RRM\" class=\"chat-link\">By Van</a></label> </div></div>"
+            ]
+        },
+        {
+            "tag": "by auto",
+            "patterns": [
+                "By Auto"
+            ],
+            "responses": [
+                "<div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><label class=\"form-check-label\" for=\"flexCheckDefault\"><a target=\"_blank\" href=\"https://www.google.com/search?q=auto+for+school&tbm=isch&ved=2ahUKEwiC_a7v6Zj6AhVJFbcAHf2xBGYQ2-cCegQIABAA&oq=auto+for+school&gs_lcp=CgNpbWcQAzIECAAQGDIECAAQGDoECCMQJzoFCAAQgAQ6BAgAEEM6BwgAELEDEEM6CAgAEIAEELEDOggIABCxAxCDAToKCAAQsQMQgwEQQzoLCAAQgAQQsQMQgwE6BAgAEB5Q6wtYzDNgmzZoAHAAeACAAXuIAboOkgEEMC4xNpgBAKABAaoBC2d3cy13aXotaW1nwAEB&sclient=img&ei=yiokY4LwC8mq3LUP_eOSsAY&bih=961&biw=1903&rlz=1C1PNBB_enIN1007IN1007&hl=en\" class=\"chat-link\">By Auto</a></label> </div></div>"
+            ]
+        }
+    ]
+}

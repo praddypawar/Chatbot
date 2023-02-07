@@ -1,0 +1,23 @@
+<div class="row justify-content-end form-input-wrap">
+    <div class="col-6 d-flex justify-content-end">
+      <p class="bot-chat userside-message" id="bot-msg">
+        {{msg}}
+      </p>
+    </div>
+  </div>
+<div id="{{div_id}}" class="client-chat">
+
+<script>
+    // alert("hello.......");
+    var mydata = "{{ res }}";
+    var div_id= "{{ div_id }}"
+    // alert(mydata);
+    var parser = new DOMParser();
+    var doc1 = parser.parseFromString(mydata, 'text/html').documentElement.textContent;
+    // alert(doc);
+    a = document.getElementById(div_id);
+    a.innerHTML += doc1;
+
+</script>
+
+</div>

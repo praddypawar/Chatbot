@@ -1,0 +1,549 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="">
+<!--<![endif]-->
+
+<head>
+    {% include 'client_temp/basic/head.html' %}
+    <link rel="stylesheet" href="{% static 'advance_builder/css/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'advance_builder/style.css' %}">
+    <!-- <script src="./logic.js"></script> -->
+
+    <script src="{% static 'advance_builder/js/jquery.min.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'advance_builder/css/bootstrap.min.css' %}">
+    <script src="{% static 'advance_builder/js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'advance_builder/js/popper.min.js' %}"></script>
+    <script src="{% static 'advance_builder/js/bootstrap.min.js' %}"></script>
+
+</head>
+
+<body>
+    {% include 'client_temp/basic/sidebar.html' %}
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+        <!-- Header-->
+        {% include 'client_temp/basic/header.html' %}
+        <!-- /#header -->
+        <!-- Content -->
+        <div class="content">
+            <!-- Animated -->
+            {% for message in messages %}
+            {% if message %}
+            <br>
+            <div class="sufee-alert alert with-close alert-primary alert-dismissible fade show">
+                {% if message.tags == "error" %}
+                <span class="badge badge-pill badge-danger">{{message.tags }}</span>
+                {% else %}
+                <span class="badge badge-pill badge-{{message.tags}}">{{message.tags }}</span>
+                {% endif %}
+
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <div class="animated fadeIn">
+                <!-- Widgets  -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <form method="post" enctype="multipart/form-data" class=""> {% csrf_token %}
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="box-title">Basic Info </h4>
+                                </div>
+                                <hr>
+                                <div class="card-body--">
+                                    
+                                    
+                                    <div class="card-body card-block">
+                                        <div class="row form-group">
+                                            <div class="col col-md-12">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Bot Name</div>
+                                                    <input type="text" name="botname" placeholder="text" required
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-12">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Bot Logo</div>
+                                                    <input type="file" name="botlogo" class="form-control" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-12">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Bot Type</div>
+                                                    <input type="text" name="bottype" placeholder="text"
+                                                        class="form-control" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- --------------------------------------------------------------------------------------------------------- -->
+                            <div class="card">
+                                <figure>
+                                    <!-- <figcaption>Tree</figcaption> -->
+                                    <ul class="tree">
+                                      <li id="li1">
+                                        <code class="month_head" onclick="myAlert(this)" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                          <i class="bi bi-gear-fill" ></i> Click for build bot
+                                        </code>
+                                        <ul>
+                                        </ul>
+                                      </li>
+                                    </ul>
+                                  </figure>
+                                
+                                
+                                  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button> -->
+                                  <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                                    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                
+                                      <div class="modal-content">
+                                        
+                                          <div class="modal-body">
+                                
+                                
+                                            <div class="form-group">
+                                              <!-- <label for="tag1">Tag</label> -->
+                                              <input type="hidden" name="tag" class="mtag form-control" id="tag1">
+                                              <input type="hidden" name="liid" class="mliid form-control" id="liid">
+                                            </div>
+                                            <label for="pattern1">User Say</label>
+                                            <div class="form-group row">
+                                              <!-- <label for="pattern1">Pattern</label> -->
+                                              <div class="col-8">
+                                                <input type="text" name="pattern[]" class="mpattern form-control" id="pattern1">
+                                              </div>
+                                              <div class="col-4">
+                                                <a href="javascript:void(0);" class="add_button_work" title="Add field">
+                                                  <div class="input-group-btn"><button type="button" class="btn btn-primary">Add More</button></div>
+                                                </a>
+                                              </div>
+                                            </div>
+                                            <div class="field_wrapper_work">
+                                
+                                            </div>
+                                            <div class="field_wrapper_work1">
+                                
+                                            </div>
+                                            <br>
+                                            <div class="form-group">
+                                              <label for="response1">Bot Response</label>
+                                              <!-- <input type="text" name="response" class="mresponse form-control" id="response1"> -->
+                                              <select name="response" id="responses" class="mresponse form-control" onfocus='this.size=4;'
+                                                onblur='this.size=1;' onchange='this.size=1; this.blur();'>
+                                                <option selected disabled class="form-control">Select</option>
+                                                <option value="btn">Button</option>
+                                                <option value="lbl">Lable</option>
+                                                <option value="lnk">Link/Url</option>
+                                                <option value="txa">Text Area</option>
+                                                <option value="no">Number</option>
+                                                <option value="chk">Checkbox</option>
+                                              </select>
+                                
+                                            </div>
+                                            <br>
+                                
+                                
+                                
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" data-dismiss="modal" class="btn btn-primary submit">Add</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <!-- <button type="button" class="btn btn-primary">Send message</button> -->
+                                          </div>
+                                       
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                            <hr>
+                             <!-- --------------------------------------------------------------------------------------------------------- -->
+                            <div class="card">
+                                <div class="card-body--">
+                                    <div class="card-body card-block">
+                                        <input type="hidden" name="all_data" id="all_data" >
+                                        <div class="form-actions form-group">
+                                            <button id="all_data_submit" name="all_data_submit" type="submit"
+                                                class="btn btn-info btn-sm">Submit All Data</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <!-- /Widgets -->
+
+                <div class="clearfix"></div>
+            </div>
+            <!-- .animated -->
+        </div>
+        <!-- /.content -->
+        {% include 'client_temp/basic/footer.html' %}
+        <!-- /.site-footer -->
+    </div>
+    <!-- /#right-panel -->
+
+ 
+    <script>
+        var tags = 1
+        function myAlert(id) {
+          // $(".month_head").click(function (ev) {
+          var liid = $(id).parents('li').attr('id');
+          var tag = $('.tag', id).text();
+          var pattern = $('.pattern', id).text();
+          var response = $('.response', id).text();
+          // var modal = document.getElementById("myModal");
+          // modal.style.display = "block";
+    
+          $(".mtag").val(tags);
+          $(".mpattern").val(pattern);
+          $(".mresponse").val(response);
+          $(".mliid").val(liid);
+          tags++;
+    
+        }
+    
+
+      </script>
+    
+      <script>
+        $(document).ready(function () {
+          var maxField = 10; //Input fields increment limitation
+          var addButton = $('.add_button_work'); //Add button selector
+          var wrapper = $('.field_wrapper_work'); //Input field wrapper
+          var fieldHTML = `<div id="delwork" class="row form-group"><div class="col-8"><input type="text" name="pattern[]" class="mpattern form-control" id="pattern1"></div><div class="col-4"><a href="javascript:void(0);" class="remove_button_work"><div class="input-group-btn"><button type="button" class="btn btn-danger">Remove</button></div> </a></div></div>
+    `;
+          var x = 1; //Initial field counter is 1
+    
+          //Once add button is clicked
+          $(addButton).click(function () {
+            if (x < maxField) {
+              x++; //Increment field counter
+              $(wrapper).append(fieldHTML); //Add field html
+            }
+          });
+          //Once remove button is clicked
+          $(wrapper).on('click', '.remove_button_work', function (e) {
+            // e.preventDefault();
+            $(this).parents('#delwork').remove(); //Remove field html
+            // var element = document.getElementById("delwork");
+            // element.parentNode.removeChild(element);
+            x--; //Decrement field counter
+          });
+        });
+    
+      </script>
+      <script>
+        main_data = {
+        "intents": [
+        {
+            "tag": "confuse",
+            "patterns": [
+                " 1234567890dfgbhnjm",
+                "AZxscvbnm,?",
+                " ................",
+                "                     ",
+                " qwertyuio",
+                "wedfgonscjknkm",
+                "qazrfduhkipoktg",
+                "qazedcyhnol,cvbnggcfdy",
+                "11hb2bj43bjb54jbnj6bnj778bnj9kbhb8hb7hv",
+                "qwertyuiosdfgh cfghbc gnc c vgn c g ncfgnfgnfhg bhnbwed aefr gv fgdvh bnhng hb fn fd",
+                " 12233333444444444444444444444555555555555566666666s"
+            ],
+            "responses": [
+                "Can you tell me more about it ?",
+                "Unable to Understand input",
+                "Try using few keywords ",
+                "Can't find results",
+                "Check spellings and inputs"
+            ]
+        }
+        ]
+    }
+        $(".submit").click(function () {
+          var tag = $(this).closest("form").find('.mtag').val();
+          var form_data = $(this).closest("form").find("input:text");
+          var array_patterns = [];
+          var array_response_btn = [];
+        //   alert(tag)
+          add_data = {
+                "tag": "",
+                "patterns": [
+                    
+                ],
+                "responses": [
+                    
+                ]
+            }
+        responses_data = ''
+          for (var i = 0; i < form_data.length; i++) {
+            console.log("form_data",form_data[i])
+            if(form_data[i].id == "pattern1"){
+              // console.log("pattern1",form_data[i])
+              array_patterns.push(form_data[i].value);
+              add_data.patterns.push(form_data[i].value)
+            }
+            else if(form_data[i].id == "btnLabel1"){
+              // console.log("btnLabel1",form_data[i])
+              array_response_btn.push(form_data[i].value);
+              responses_data += `<div class=\"row justify-content-start form-input-wrap\"><div class=\"col\"><button type=\"button\"  id=\"dynamicbtn\" onClick=\"GFG_click(this.value)\" value=\"`+form_data[i].value+`\" class=\"btn form-input\">`+form_data[i].value+`</button></div></div>`
+            }
+            else if(form_data[i].id == "Label1"){
+              // console.log("btnLabel1",form_data[i])
+              array_response_btn.push(form_data[i].value);
+              responses_data += `<div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><p class=\"bot-chat botside-message\" id=\"bot-msg\">`+form_data[i].value+`</p></div></div>`
+            }
+            else if(form_data[i].id == "lnkLabel1"){
+              // console.log("btnLabel1",form_data[i])
+              array_response_btn.push(form_data[i].value);
+              responses_data += `<div class=\"row justify-content-start form-input-wrap\"><div class=\"col-lg-12 col-sm-10\"><label class=\"form-check-label\" for=\"flexCheckDefault\"><a target=\"_blank\" href=\"`+form_data[i].value+`\" class=\"chat-link\">`+form_data[i].value+`</a></label> </div></div>`
+            }
+    
+          }
+          add_data.tag = tag
+          add_data.responses.push(responses_data)
+          // console.log("pattners: ",array_patterns);
+          // console.log("btn res: ",array_response_btn);
+          var liid = $(this).closest("form").find('.mliid').val();
+          // alert(liid);
+          
+          main_data.intents.push(add_data);
+          console.log("add_data",main_data);
+          // alert(liid.slice(2)+randomValue);
+          $("#all_data").val(JSON.stringify(main_data));
+
+          for(var j=0; j<array_response_btn.length; j++){
+            var randomValue = Math.random().toString(36).slice(2);
+            $("#" + liid).children("ul").append(`
+            <li id ="` + liid.slice(0, 2) + randomValue + `">
+              <code>
+                <div onclick="myAlert(this)" class="month_head" data-toggle="modal" data-target=".bd-example-modal-lg">
+                  <div class="tag">` + tag + `</div><b>Bot Reply:</b> <div class="pattern">` + array_response_btn[j] + `</div>
+                  <div class="response"><b>User Query: </b>` + array_patterns + `</div>
+                </div>
+              </code>
+              <ul></ul>
+            </li>
+            `);
+          }
+    
+          
+          
+          
+          $(".mtag").val("");
+          $(".mpattern").val("");
+          $(".mresponse").val("");
+          $(".mliid").val("");
+    
+          $(".field_wrapper_work").empty();
+          $(".field_wrapper_work1").empty();
+    
+    
+    
+        });
+      </script>
+      
+    
+      <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+    
+        // // Get the button that opens the modal
+        // var btn = document.getElementById("myBtn");
+    
+        // // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+    
+        // // When the user clicks the button, open the modal 
+        // btn.onclick = function() {
+        //   modal.style.display = "block";
+        // }
+    
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+          modal.style.display = "none";
+        }
+    
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+      </script>
+    
+    
+      <script>
+        $(document).ready(function () {
+          // var maxField = 10; //Input fields increment limitation
+          var addButton = $('#responses'); //Add button selector
+          var wrapper = $('.field_wrapper_work1'); //Input field wrapper
+          var fieldHTML = ''
+          var x = 1; //Initial field counter is 1
+    
+          //Once add button is clicked
+          $(addButton).change(function () {
+            // alert("hello");
+            var ms = document.getElementById('responses').value;
+            console.log(ms);
+            $('#responses').val($('#responses option').eq(0).val());
+            if (ms == "btn") {
+    
+              fieldHTML = `<div  id="delwork1" class="card">
+                            <div class="card-header">
+                                  <strong>Button </strong> Form
+                              </div>
+                              <div class="card-body card-block">
+                                      <div class="form-group">
+                                        <input type="hidden" name="restype[]" value="btn">
+                                          <label for="btnLabel1" class="pr-1  form-control-label">Button Text</label>
+                                          <input type="text" name="btnlabel[]" id="btnLabel1" placeholder="Label" required="" class="form-control">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="exampleInputEmail2" class="px-1  form-control-label">Button Name</label>
+                                          <input type="text" name="btnname[]" id="exampleInputEmail2" placeholder="" required="" class="form-control">
+                                      </div>
+                                      <div class="form-group">
+                                          <label class="px-1  form-control-label">Theme</label>
+                                          <select name="btntheme[]" class="form-control">
+                                              <option value="primary">Primary</option>
+                                              <option value="danger">Danger</option>
+                                              <option value="info">Info</option>
+                                          </select>
+                                      </div>  
+                              </div>
+                              <div class="card-footer">
+                                <a href="javascript:void(0);" class="remove_button_work1">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-danger">Remove</button>
+                                    </div>
+                                </a>
+                              </div>
+                        </div> `;
+            }
+            else if (ms == "lbl") {
+              fieldHTML = `
+                          <div  id="delwork1" class="card">
+                            <div class="card-header">
+                                  <strong>Label </strong> Form
+                              </div>
+                              <div class="card-body card-block">
+                                      <div class="form-group">
+                                        <input type="hidden" name="restype[]" value="lbl">
+                                          <label for="Label1" class="pr-1  form-control-label">Label Text</label>
+                                          <input type="text" name="btnlabel[]" id="Label1" placeholder="Label" required="" class="form-control">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="exampleInputEmail2" class="px-1  form-control-label">Label Name</label>
+                                          <input type="text" name="btnname[]" id="exampleInputEmail2" placeholder="" required="" class="form-control">
+                                      </div>
+                                      <div class="form-group">
+                                          <label class="px-1  form-control-label">Theme</label>
+                                          <select name="btntheme[]" class="form-control">
+                                            <option value="normal">Normal</option>
+                                              <option value="primary">Primary</option>
+                                              <option value="danger">Danger</option>
+                                              <option value="info">Info</option>
+                                          </select>
+                                      </div>   
+                              </div>
+                              <div class="card-footer">
+                                <a href="javascript:void(0);" class="remove_button_work1">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-danger">Remove</button>
+                                    </div>
+                                </a>
+                              </div>
+                        </div> `;
+            }
+            else if (ms == "lnk") {
+              fieldHTML = `<div  id="delwork1" class="card">
+                              <div class="card-header">
+                                    <strong>Link Url </strong> Form
+                                </div>
+                                <div class="card-body card-block">
+                                        <div class="form-group">
+                                          <input type="hidden" name="restype[]" value="lnk">
+                                            <label for="lnkLabel1" class="pr-1  form-control-label">Link url</label>
+                                            <input type="text" name="btnlabel[]" id="lnkLabel1" placeholder="Label" required="" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail2" class="px-1  form-control-label">Link Name</label>
+                                            <input type="text" name="btnname[]" id="exampleInputEmail2" placeholder="" required="" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="px-1  form-control-label">Theme</label>
+                                            <select name="btntheme[]" class="form-control">
+                                              <option value="normal">Normal</option>
+                                                <option value="primary">Primary</option>
+                                                <option value="danger">Danger</option>
+                                                <option value="info">Info</option>
+                                            </select>
+                                        </div>  
+                                </div>
+                                <div class="card-footer">
+                                  <a href="javascript:void(0);" class="remove_button_work1">
+                                      <div class="input-group-btn">
+                                          <button type="button" class="btn btn-danger">Remove</button>
+                                      </div>
+                                  </a>
+                                </div>
+                          </div>`;
+            }
+            //Check maximum number of input fields
+            // if(x < maxField){ 
+            x++; //Increment field counter
+            $(wrapper).append(fieldHTML); //Add field html
+            // }
+            fieldHTML = ''
+          });
+          //Once remove button is clicked
+          $(wrapper).on('click', '.remove_button_work1', function (e) {
+            // e.preventDefault();
+            $(this).parents('#delwork1').remove() //Remove field html
+            // var element = document.getElementById("delwork1");
+            // element.parentNode.removeChild(element);
+            x--; //Decrement field counter
+          });
+        });
+    
+      </script>
+
+<!-- <script>
+    $('#all_data_submit').click(function() {
+        // alert("main btn");
+        $.ajax({
+            method: "POST",
+            data: {
+              clearjson: true,
+            },
+                  success:function(data){
+                    $('#json_datas').empty();
+            $('#json_datas').append(data);
+          },
+            headers: {
+              "X-CSRFToken": "{{csrf_token}}"
+            }
+  
+          })
+  });
+  </script> -->
+</body>
+
+</html>
